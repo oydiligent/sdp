@@ -12,7 +12,7 @@
 		></sidebar-item>
 	</el-sub-menu>
 	<el-menu-item
-		v-else
+		v-else-if="props.item.meta?.isMenu"
 		:index="props.item.path"
 		@click="onItemClick(props.item)"
 	>

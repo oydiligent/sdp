@@ -18,6 +18,7 @@ const department: RouteRecordRaw[] = [
 		meta: {
 			title: "科室作业",
 			isMenu: true,
+			redirect: true,
 		},
 		children: [
 			{
@@ -26,6 +27,7 @@ const department: RouteRecordRaw[] = [
 				meta: {
 					title: "系统管理",
 					isMenu: true,
+					redirect: true,
 				},
 				children: [
 					{
@@ -52,8 +54,9 @@ const department: RouteRecordRaw[] = [
 						path: "/department/system/role/detail",
 						name: "roleDetail",
 						meta: {
-							title: "角色管理",
+							title: "角色管理详情",
 							isMenu: false,
+							activeMenu: "/department/system/role", // 针对详情对应激活目录
 							roles: ["refundApplication"],
 						},
 						component: Role,
@@ -66,6 +69,7 @@ const department: RouteRecordRaw[] = [
 				meta: {
 					title: "基础设置",
 					isMenu: true,
+					redirect: true,
 				},
 				children: [
 					{

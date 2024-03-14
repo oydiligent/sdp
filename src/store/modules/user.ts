@@ -44,6 +44,9 @@ const filterAsyncRoutes = (
 		if (hasPermission(tmp, routes)) {
 			if (tmp.children) {
 				tmp.children = filterAsyncRoutes(tmp.children, routes);
+				if (tmp.meta?.redirect && tmp.children.length) {
+					tmp.redirect = tmp.children[0].path;
+				}
 			}
 			res.push(tmp);
 		}
@@ -92,6 +95,7 @@ export const userStore = defineStore("user", {
 		async setGenerateRoutes(value: string[]): Promise<RouteRecordRaw[]> {
 			return await new Promise((resolve) => {
 				const accessedRoutes = filterAsyncRoutes(asyncRoutes, value);
+				console.log(accessedRoutes);
 				this.addRoutes = accessedRoutes;
 				resolve(accessedRoutes);
 			});
