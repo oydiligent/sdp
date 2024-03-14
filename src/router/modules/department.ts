@@ -19,6 +19,7 @@ const department: RouteRecordRaw[] = [
 			title: "科室作业",
 			isMenu: true,
 			redirect: true,
+			roles: ["refundApplication"],
 		},
 		children: [
 			{

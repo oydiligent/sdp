@@ -1,7 +1,7 @@
 <template>
 	<div class="h-full bg-blue-200 p-40px grid grid-cols-3 gap-20px">
 		<el-card
-			v-for="item in modules"
+			v-for="item in filterModules"
 			:key="item.key"
 			style="max-width: 480px; cursor: pointer"
 			@click="handleToModule(item)"
@@ -26,29 +26,43 @@ interface modulesModel {
 	key: number;
 	name: string;
 	icon: string;
+	roles: string[];
 }
+
 const modules: Ref<modulesModel[]> = ref([
 	{
 		key: 1,
+		roles: ["refundApplication"],
 		name: "科室作业",
 		icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 	},
 	{
 		key: 2,
+		roles: ["refundApplication"],
 		name: "仓库作业",
 		icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 	},
 	{
 		key: 3,
+		roles: ["refundApplication"],
 		name: "采购管理",
 		icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 	},
 	{
 		key: 4,
+		roles: ["refundApplication"],
 		name: "财务管理",
 		icon: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 	},
 ]);
+
+const filterModules = computed(() => {
+	const { resources } = store.baseInfo;
+
+	return modules.value.filter(({ roles }) =>
+		roles.some((role) => resources.includes(role)),
+	);
+});
 
 const hasPermission = (tmp: RouteRecordRaw, routes: string[]): boolean => {
 	const { meta, path } = tmp;
