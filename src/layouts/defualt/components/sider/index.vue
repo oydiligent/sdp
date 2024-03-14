@@ -44,7 +44,10 @@ const activeMenu = computed(() => {
 });
 
 const hasPermission = (tmp: RouteRecordRaw, routes: string[]): boolean => {
-	if (tmp.meta?.roles) {
+	console.log(tmp);
+	if (!tmp.meta?.isMenu) {
+		return false;
+	} else if (tmp.meta?.roles) {
 		return routes.some((role) => (tmp.meta?.roles as string[]).includes(role));
 	} else {
 		return true;

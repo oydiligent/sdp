@@ -17,6 +17,7 @@ const department: RouteRecordRaw[] = [
 		component: Layout,
 		meta: {
 			title: "科室作业",
+			isMenu: true,
 		},
 		children: [
 			{
@@ -43,6 +44,16 @@ const department: RouteRecordRaw[] = [
 						meta: {
 							title: "角色管理",
 							isMenu: true,
+							roles: ["refundApplication"],
+						},
+						component: Role,
+					},
+					{
+						path: "/department/system/role/detail",
+						name: "roleDetail",
+						meta: {
+							title: "角色管理",
+							isMenu: false,
 							roles: ["refundApplication"],
 						},
 						component: Role,
